@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\PH-Next-Level\\Be-A-SQL-Superstar-And-Prisma-Pro\\L2-A8\\logs\\winston\\successes\\.01c7fc404cb292224c0d78f243443e0bee88af0e-audit.json",
+    "files": [
+        {
+            "date": 1693498768646,
+            "name": "C:\\PH-Next-Level\\Be-A-SQL-Superstar-And-Prisma-Pro\\L2-A8\\logs\\winston\\successes\\phu-2023-31-08-22-success.log",
+            "hash": "521b658f9847220434c5757ed63405cd8cb6f89a6ee446eef160df8a44207f27"
+        },
+        {
+            "date": 1693501385953,
+            "name": "C:\\PH-Next-Level\\Be-A-SQL-Superstar-And-Prisma-Pro\\L2-A8\\logs\\winston\\successes\\phu-2023-31-08-23-success.log",
+            "hash": "9c22e0377e3eac0c2dcd906d5d8f9ae42d4f902d96a81551daa74c6089bef1f7"
+        }
+    ],
+    "hashType": "sha256"
+}
