@@ -17,6 +17,18 @@ const getAllBooks = async (): Promise<Book[]> => {
   return result;
 };
 
+const getBooksByCategoryId = async (categoryId: string) => {
+  const result = await prisma.category.findUnique({
+    where: {
+      id: categoryId,
+    },
+    include: {
+      book: {},
+    },
+  });
+  return result;
+};
+
 const getSingleBook = async (id: string): Promise<Book | null> => {
   const result = await prisma.book.findUnique({
     where: {
@@ -53,6 +65,7 @@ const deleteSingleBook = async (id: string): Promise<Book> => {
 export const BookService = {
   createBook,
   getAllBooks,
+  getBooksByCategoryId,
   getSingleBook,
   updateSingleBook,
   deleteSingleBook,
