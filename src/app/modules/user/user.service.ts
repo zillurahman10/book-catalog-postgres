@@ -1,4 +1,7 @@
 import { User } from '@prisma/client';
+import { Secret } from 'jsonwebtoken';
+import config from '../../../config';
+import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import { prisma } from '../../../shared/prisma';
 import { IUserLogin } from './user.interface';
 
@@ -24,7 +27,18 @@ const userLogin = async (payload: IUserLogin) => {
     throw new Error('Email or Password not matched');
   }
 
-  console.log(isUserExist[0]);
+  //creating token
+  const { id, role } = isUserExist[0];
+  const token = jwtHelpers.createToken(
+    {
+      id,
+      role,
+    },
+    config.jwt.secret as Secret,
+    config.jwt.expires_in as string
+  );
+
+  return token;
 };
 
 const getAllUser = async (): Promise<User[]> => {
