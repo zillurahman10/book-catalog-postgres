@@ -1,6 +1,4 @@
 import { User } from '@prisma/client';
-import httpStatus from 'http-status';
-import ApiError from '../../../errors/ApiError';
 import { prisma } from '../../../shared/prisma';
 import { IUserLogin } from './user.interface';
 
@@ -13,6 +11,7 @@ const userSignUp = async (payload: User): Promise<User> => {
 
 const userLogin = async (payload: IUserLogin) => {
   const { email, password } = payload;
+  console.log(email, password);
 
   const isUserExist = await prisma.user.findMany({
     where: {
@@ -21,8 +20,8 @@ const userLogin = async (payload: IUserLogin) => {
     },
   });
 
-  if (!isUserExist) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email or Password not matched');
+  if (isUserExist === undefined || isUserExist === null || !isUserExist) {
+    throw new Error('Email or Password not matched');
   }
 
   console.log(isUserExist[0]);
