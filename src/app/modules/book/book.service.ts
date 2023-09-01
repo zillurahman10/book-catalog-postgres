@@ -23,7 +23,7 @@ const getBooksByCategoryId = async (categoryId: string) => {
       id: categoryId,
     },
     include: {
-      book: {},
+      book: true,
     },
   });
   return result;
