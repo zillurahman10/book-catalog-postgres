@@ -1,9 +1,11 @@
 import { Order } from '@prisma/client';
 import { prisma } from '../../../shared/prisma';
 
-const createOrder = async (payload: Order) => {
+const createOrder = async (payload: Order, userData: any) => {
+  const fullData = { ...payload, ...userData };
+  console.log(fullData);
   const result = await prisma.order.create({
-    data: payload,
+    data: fullData,
   });
   return result;
 };

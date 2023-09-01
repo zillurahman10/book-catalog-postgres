@@ -1,5 +1,8 @@
 import { Book } from '@prisma/client';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IPaginationOptions } from '../../../interfaces/pagination';
 import { prisma } from '../../../shared/prisma';
+import { IBookFilterRequest } from './book.interface';
 
 const createBook = async (payload: Book): Promise<Book> => {
   const result = await prisma.book.create({
@@ -12,9 +15,52 @@ const createBook = async (payload: Book): Promise<Book> => {
 };
 
 // kaj baki ache
-const getAllBooks = async (): Promise<Book[]> => {
-  const result = await prisma.book.findMany();
-  return result;
+const getAllBooks = async (
+  filters: IBookFilterRequest,
+  options: IPaginationOptions
+) => {
+  const { page, limit, skip } = paginationHelpers.calculatePagination(options);
+
+  const { searchTerm } = filters;
+
+  const result = await prisma.book.findMany({
+    where: {
+      OR: [
+        {
+          title: {
+            contains: searchTerm,
+            mode: 'insensitive',
+          },
+        },
+        {
+          author: {
+            contains: searchTerm,
+            mode: 'insensitive',
+          },
+        },
+        {
+          genre: {
+            contains: searchTerm,
+            mode: 'insensitive',
+          },
+        },
+      ],
+    },
+    skip,
+    take: limit,
+  });
+
+  const total = await prisma.book.count();
+
+  return {
+    meta: {
+      page,
+      size: 10,
+      total,
+      totalPage: 7,
+    },
+    data: result,
+  };
 };
 
 const getBooksByCategoryId = async (categoryId: string) => {
