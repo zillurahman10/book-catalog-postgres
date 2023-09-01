@@ -14,6 +14,19 @@ const userSignUp = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const userLogin = catchAsync(async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  const payload = { email, password };
+
+  const result = await UserService.userLogin(payload);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User logged in successfully',
+    data: result,
+  });
+});
+
 const getAllUser = catchAsync(async (req: Request, res: Response) => {
   const result = await UserService.getAllUser();
   sendResponse(res, {
@@ -60,6 +73,7 @@ const deleteSingleUser = catchAsync(async (req: Request, res: Response) => {
 
 export const UserController = {
   userSignUp,
+  userLogin,
   getAllUser,
   getSingleUser,
   updateSingleUser,

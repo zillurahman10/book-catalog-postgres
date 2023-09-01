@@ -14,6 +14,7 @@ router.get(
 );
 
 router.post('/signup', UserController.userSignUp);
+router.post('/signin', UserController.userLogin);
 
 router.patch(
   '/users/:id',
