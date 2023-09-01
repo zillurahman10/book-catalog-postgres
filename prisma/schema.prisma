@@ -40,7 +40,6 @@ model Book {
   categoryId      String
   category        Category          @relation(fields: [categoryId], references: [id])
   reviewAndRating ReviewAndRating[]
-  orderedBook     OrderedBook[]
 }
 
 model ReviewAndRating {
@@ -56,23 +55,13 @@ model ReviewAndRating {
 }
 
 model Order {
-  id     String @id @default(uuid())
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+  id           String @id @default(uuid())
+  userId       String
+  user         User   @relation(fields: [userId], references: [id])
+  orderedBooks Json[]
 
-  status      String
-  createdAt   DateTime      @default(now())
-  orderedBook OrderedBook[]
-}
-
-model OrderedBook {
-  id      String @id @default(uuid())
-  orderId String
-  order   Order  @relation(fields: [orderId], references: [id])
-
-  bookId   String
-  book     Book   @relation(fields: [bookId], references: [id])
-  quantity Int
+  status    String
+  createdAt DateTime @default(now())
 }
 
 enum UserRole {
