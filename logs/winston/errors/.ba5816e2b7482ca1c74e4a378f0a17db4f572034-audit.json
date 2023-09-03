@@ -79,6 +79,16 @@
             "date": 1693729458333,
             "name": "C:\\PH-Next-Level\\Be-A-SQL-Superstar-And-Prisma-Pro\\L2-A8\\logs\\winston\\errors\\phu-2023-03-09-14-error.log",
             "hash": "6151386424588bd1d8df1745acd355e04e7d9a5334faff1c971f96930ea4f863"
+        },
+        {
+            "date": 1693752470064,
+            "name": "C:\\PH-Next-Level\\Be-A-SQL-Superstar-And-Prisma-Pro\\L2-A8\\logs\\winston\\errors\\phu-2023-03-09-20-error.log",
+            "hash": "834d020f93a70903e47d4f63362fa52a7154b89278c2b2149de1ef51538b71c0"
+        },
+        {
+            "date": 1693754569723,
+            "name": "C:\\PH-Next-Level\\Be-A-SQL-Superstar-And-Prisma-Pro\\L2-A8\\logs\\winston\\errors\\phu-2023-03-09-21-error.log",
+            "hash": "ccc87f19b9df5abaf8bede5a0581c63d584d3e2ae6ca09466d0b2764104f66f0"
         }
     ],
     "hashType": "sha256"
