@@ -1,4 +1,6 @@
 import express from 'express';
+import { ENUM_USER_ROLE } from '../../../enums/user';
+import auth from '../../middlewares/auth';
 import { BookController } from './book.controller';
 
 const router = express.Router();
@@ -6,8 +8,20 @@ const router = express.Router();
 router.get('/', BookController.getAllBooks);
 router.get('/:id', BookController.getSingleBook);
 router.get('/:categoryId/category', BookController.getBooksByCategoryId);
-router.post('/create-book', BookController.createBook);
-router.patch('/:id', BookController.updateSingleBook);
-router.delete('/:id', BookController.deleteSingleBook);
+router.post(
+  '/create-book',
+  auth(ENUM_USER_ROLE.ADMIN),
+  BookController.createBook
+);
+router.patch(
+  '/:id',
+  auth(ENUM_USER_ROLE.ADMIN),
+  BookController.updateSingleBook
+);
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.ADMIN),
+  BookController.deleteSingleBook
+);
 
 export const BookRoutes = router;
